@@ -1,5 +1,28 @@
 {% macro articles(_articles) %}
     {% for article in _articles %}
+    {% set article_levels = article.level.split('.') %}
+    {% set page_levels = page.level.split('.') %}
+    {% set article_level_length = article_levels | length %}
+    {% set page_level_length = page_levels | length %}
+    {% set score = 0 %}
+    {% if page_level_length > article_level_length %}
+        {% for i in range(article_level_length) %}
+            {% if article_levels[i] != page_levels[i] %}
+                {% set score = score + article_level_length - i %}
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for i in range(page_level_length) %}
+            {% if article_levels[i] != page_levels[i] %}
+                {% set score = score + page_level_length - i %}
+            {% endif %}
+        {% endfor %}
+        {% set score = score + article_level_length - page_level_length %}
+    {% endif %}
+    {% if article_level_length < 3 and score > 1 %}
+        {% set score = 1 %}
+    {% endif %}
+    {% if score < 2 %}
         <li class="chapter {% if article.path == file.path and not article.anchor %}active{% endif %}" data-level="{{ article.level }}" {% if article.path %}data-path="{{ article.path|resolveFile }}"{% endif %}>
             {% if article.path and getPageByPath(article.path) %}
                 <a href="{{ article.path|resolveFile }}{{ article.anchor }}">
@@ -17,13 +40,15 @@
             {% else %}
                 </span>
             {% endif %}
-
             {% if article.articles.length > 0 %}
             <ul class="articles">
+                {% if score < 1 %}
                 {{ articles(article.articles, file, config) }}
+                {% endif %}
             </ul>
             {% endif %}
         </li>
+    {% endif %}
     {% endfor %}
 {% endmacro %}
 

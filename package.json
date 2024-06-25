@@ -1,8 +1,8 @@
 {
-  "name": "gitbook-plugin-theme-default",
-  "description": "Default theme for GitBook",
+  "name": "gitbook-plugin-lanying-grow-ai-theme",
+  "description": "Lanying grow ai theme for GitBook",
   "main": "./index.js",
-  "version": "1.0.7",
+  "version": "1.0.0",
   "engines": {
     "gitbook": ">=3.0.0"
   },
@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GitbookIO/theme-default.git"
+    "url": "https://github.com/maxim-top/gitbook-plugin-lanying-grow-ai-theme.git"
   },
-  "author": "FriendCode Inc. <contact@gitbook.com>",
+  "author": "Maximtop Inc. <eva@bmxlabs.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/GitbookIO/theme-default/issues"
+    "url": "https://github.com/maxim-top/gitbook-plugin-lanying-grow-ai-theme/issues"
   },
   "contributors": [
     {
