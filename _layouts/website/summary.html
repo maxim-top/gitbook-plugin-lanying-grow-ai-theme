@@ -24,7 +24,7 @@
     {% endif %}
     {% if score < 2 %}
         <li class="chapter {% if article.path == file.path and not article.anchor %}active{% endif %}" data-level="{{ article.level }}" {% if article.path %}data-path="{{ article.path|resolveFile }}"{% endif %}>
-            {% if article.path and getPageByPath(article.path) %}
+            {% if article.path %}
                 <a href="{{ article.path|resolveFile }}{{ article.anchor }}">
             {% elif article.url %}
                 <a target="_blank" href="{{ article.url }}">
