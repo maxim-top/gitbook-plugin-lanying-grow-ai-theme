@@ -19,6 +19,7 @@
         {% endfor %}
         {% set score = score + article_level_length - page_level_length %}
     {% endif %}
+    <p class="note">score:{{score}}, article_level_length:{{article_level_length}}, article.level:{{article.level}}, article.path:{{article.path}}, article.url:{{article.url}}, article.title:{{article.title}}</p>
     {% if article_level_length < 3 and score > 1 %}
         {% set score = 1 %}
     {% endif %}
@@ -44,10 +45,14 @@
             <ul class="articles">
                 {% if score < 1 %}
                 {{ articles(article.articles, file, config) }}
+                {% else %}
+                  <p>score:{{score}},article_level_length:{{article_level_length}}， url: {{ article.url }}</p>
                 {% endif %}
             </ul>
             {% endif %}
         </li>
+    {% else %}
+      <p>score:{{score}},article_level_length:{{article_level_length}}， url: {{ article.url }}</p>
     {% endif %}
     {% endfor %}
 {% endmacro %}
